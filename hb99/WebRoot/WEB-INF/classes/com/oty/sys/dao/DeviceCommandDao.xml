@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oty.sys.dao.DeviceCommandDao">
+
+	<resultMap type="com.oty.sys.entity.DeviceCommand" id="deviceCommandMap">
+		<result property="id" column="id" javaType="int" jdbcType="INTEGER" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="deviceId" column="device_id" />
+		<result property="deviceAttributeId" column="device_attribute_id" />
+		<result property="commandIndex" column="command_index" />
+		<result property="commandValue" column="command_value" />
+		<result property="status" column="status" />
+	</resultMap>
+
+   <select id="getNewestSwitchCommand"  resultMap="deviceCommandMap">
+       select t.* from t_device_command t where t.device_id = #{deviceId} and t.status = 0  and t.command_index in (1011,1012) ORDER BY create_time desc limit 1
+   </select>
+   
+</mapper>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.oty.sys.dao.FileInfoDao">
+ 
+    <resultMap type="com.oty.sys.entity.TFileInfo" id="fileInfoMap">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="tableName" column="table_name"/>
+        <result property="referenceId" column="reference_id"/>
+        <result property="type" column="type"/> 
+        <result property="fileId" column="file_id"/>  
+        <result property="createTime" column="create_time"/>  
+        <result property="updateTime" column="update_time"/>  
+    </resultMap>
+    
+    <sql id="Base_Column_List" > 
+  	  	     id ,  	        
+  	  	     name ,  	        
+  	  	     table_name ,  	        
+  	  	     reference_id ,  	        
+  	  	     type ,  	 	        
+  	  	     file_id ,        
+  	  	     create_time ,  	 	        
+  	  	     update_time 
+    </sql>
+
+	<select id="getFileInfoByFileId" resultType="com.oty.sys.entity.TFileInfo">
+		select  <include refid="Base_Column_List" /> from t_file_info where file_id = #{fileId}
+	</select>
+	
+	<select id="getImageId" resultType="int">
+		select fileId from t_file_info where table_name = #{0} and reference_id = #{1} and type = #{2}
+	</select> 
+	
+	<select id="getFileInfo" resultType="com.oty.sys.entity.TFileInfo">
+		select  <include refid="Base_Column_List" />  from t_file_info where table_name = #{tableName} and reference_id = #{referenceId} and type= #{type}
+	</select>
+
+	<select id="list" resultType="com.oty.sys.entity.TFileInfo">
+		select  <include refid="Base_Column_List" />  from t_file_info where table_name = #{0} and reference_id = #{1}
+	</select>
+
+	<select id="listFileIds" resultType="int">
+		select  <include refid="Base_Column_List" />  from t_file_info where id = #{value}
+	</select>   
+	
+	<delete id="deleteOldInfos">
+		delete from t_file_info where table_name = #{0} and reference_id = #{1} and type =#{2}  and  <![CDATA[ id <> #{3} ]]>
+	</delete>
+	
+	<delete id="delRefId">
+		delete from t_file_info f where f.reference_id = #{0} and f.type=0 and f.table_name = #{1} 
+	</delete> 
+
+</mapper>

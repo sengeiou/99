@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oty.sys.dao.DeviceParamRecordDao">
+
+	<resultMap type="com.oty.sys.entity.TDeviceParamRecord" id="deviceParamRecordMap">
+		<result property="id" column="id" javaType="int" jdbcType="INTEGER" />
+		<result property="deviceId" column="device_id" />
+		<result property="projectId" column="project_id" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="pm25" column="pm25" />
+		<result property="pm10" column="pm10" />
+		<result property="tsp" column="tsp" />
+		<result property="temperature" column="temperature" />
+		<result property="humidity" column="humidity" />
+		<result property="noise" column="noise" />
+		<result property="windDirection" column="wind_direction" />
+		<result property="windSpeed" column="wind_speed" />
+		<result property="ozone" column="ozone" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,
+		device_id,
+		project_id,
+		create_time,
+		update_time,
+		pm25,
+		pm10,
+		tsp,
+		temperature,
+		humidity,
+		noise,
+		wind_direction,
+		wind_speed,
+		ozone
+	</sql>
+
+</mapper>

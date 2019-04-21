@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oty.sys.dao.WarnPicDao">
+
+	<resultMap type="com.oty.sys.entity.TWarnPic" id="warnPicMap">
+		<result property="id" column="id" javaType="int" jdbcType="INTEGER" />
+		<result property="deviceId" column="device_id" />
+		<result property="createTime" column="create_time" />
+		<result property="url" column="url" />
+		<result property="projectId" column="project_id" />
+		<result property="name" column="name" /> 
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,
+		device_id,
+		create_time,
+		url,
+		project_id,
+		name 
+	</sql>
+
+</mapper>

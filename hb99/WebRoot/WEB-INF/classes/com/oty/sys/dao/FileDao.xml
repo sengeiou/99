@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.oty.sys.dao.FileDao">  
+ 
+    <resultMap type="com.oty.sys.entity.TFile" id="fileMap">
+        <result property="id" column="id" javaType="int"  jdbcType="INTEGER"/>
+        <result property="fileName" column="file_name"/>
+        <result property="fileSize" column="file_size"/>
+        <result property="contentType" column="content_type"/>
+        <result property="content" column="content"/>
+        <result property="uploadTime" column="upload_time"/>  
+    </resultMap> 
+    
+    <sql id="Base_Column_List" > 
+  	  	     id ,  	        
+  	  	     file_name ,  	        
+  	  	     file_size ,  	        
+  	  	     content_type ,  	        
+  	  	     content ,  	        
+  	  	     upload_time   	     
+    </sql>    
+	
+	<insert id="save" parameterType="com.oty.sys.entity.TFile" useGeneratedKeys="true" keyProperty="id">
+		insert into t_file
+		(
+			`file_name`, 
+			`file_size`, 
+			`content_type`, 
+			`url`, 
+			`upload_time`
+		)
+		values
+		(
+			#{fileName}, 
+			#{fileSize}, 
+			#{contentType}, 
+			#{url}, 
+			NOW()
+		)
+	</insert> 
+	
+</mapper>

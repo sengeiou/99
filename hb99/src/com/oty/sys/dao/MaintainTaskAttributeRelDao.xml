@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oty.sys.dao.MaintainTaskAttributeRelDao">
+
+	<resultMap type="com.oty.sys.entity.TMaintainTaskAttributeRel" id="maintainTaskAttributeRelDaoMap">
+		<result property="id" column="id" javaType="int" jdbcType="INTEGER" />
+		<result property="taskId" column="task_id" />
+		<result property="attributeId" column="attribute_id" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" /> 
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,
+		task_id,
+		attribute_id,
+		create_time,
+		update_time 
+	</sql>
+
+	<select id="loadAttributeList" resultType="int">
+		select attribute_id from t_maintain_task_attribute_rel where task_id = #{taskId} 
+	</select>  
+	
+	<delete id="delAllByTaksId">
+		delete from t_maintain_task_attribute_rel where task_id = #{taskId}
+	</delete>
+
+</mapper>

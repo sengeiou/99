@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oty.sys.dao.MaintainTaskDao">
+
+	<resultMap type="com.oty.sys.entity.TMaintainTask" id="maintainTaskMap">
+		<result property="id" column="id" javaType="int" jdbcType="INTEGER" />
+		<result property="deviceId" column="device_id" />
+		<result property="recordTime" column="record_time" />
+		<result property="recordUserId" column="record_user_id" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="remark" column="remark" />
+		<result property="delFlag" column="del_flag" />
+		<result property="gpsX" column="gps_x" />
+		<result property="gpsY" column="gps_y" />
+		<result property="projectId" column="project_id" />
+		<result property="name" column="name" />
+		<result property="sdate" column="sdate" />
+		<result property="edate" column="edate" />
+		<result property="name" column="name" />
+		<result property="isError" column="is_error" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,
+		device_id,
+		record_time,
+		record_user_id,
+		create_time,
+		update_time,
+		remark,
+		del_flag,
+		gps_x,
+		gps_y,
+		project_id,
+		name,
+		sdate,
+		edate,
+		is_error
+	</sql> 
+
+</mapper>

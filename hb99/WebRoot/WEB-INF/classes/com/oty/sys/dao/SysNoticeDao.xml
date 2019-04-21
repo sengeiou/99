@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.oty.sys.dao.SysNoticeDao"> 
+    
+    <resultMap type="com.oty.sys.entity.SysNotice" id="sysNoticeMap">
+        <result property="id" column="id" javaType="int"  jdbcType="INTEGER"/>
+        <result property="contents" column="contents"/>
+        <result property="title" column="title" javaType="string" jdbcType="VARCHAR"/> 
+        <result property="isTop" column="is_top" javaType="int"  jdbcType="INTEGER"/>
+        <result property="sysUserId" column="sys_user_id" javaType="int"  jdbcType="INTEGER"/> 
+        <result property="deadline" column="deadline" javaType="string"  jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" javaType="java.util.Date"  jdbcType="DATE"/> 
+        <result property="updateTime" column="update_time" javaType="java.util.Date"  jdbcType="DATE"/> 
+    </resultMap>
+    
+    <sql id="Base_Column_List" > 
+        id,
+		create_time,
+		update_time,
+		contents,
+		title,
+		is_top,
+		sys_user_id,
+		deadline
+    </sql>
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.oty.sys.entity.SysNotice">
+        INSERT INTO sys_notice
+        (create_time,update_time,contents,title,sys_user_id,is_top,deadline)
+        VALUES
+        ( #{createTime},#{updateTime},#{contents},#{title},#{sysUserId},#{isTop},#{deadline})
+    </insert>
+
+</mapper>

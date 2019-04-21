@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oty.sys.dao.AqiSiteDao">
+
+	<resultMap type="com.oty.sys.entity.TAqiSite" id="aqiSiteMap">
+		<result property="id" column="id" javaType="int" jdbcType="INTEGER" />
+		<result property="aqi_id" column="aqi_id" />
+		<result property="site_name" column="site_name" />
+		<result property="co" column="co" />
+		<result property="so2" column="so2" />
+		<result property="o3" column="o3" />
+		<result property="no2" column="no2" />
+		<result property="aqi" column="aqi" />
+		<result property="co" column="co" />
+		<result property="no2" column="no2" />
+		<result property="aqi" column="aqi" />
+		<result property="quality" column="quality" />
+		<result property="pm10" column="pm10" />
+		<result property="pm25" column="pm25" />
+		<result property="o3H8" column="o3_h8" />
+		<result property="primary_pollutant" column="primary_pollutant" />
+		<result property="ct" column="ct" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,
+		aqi_id,
+		site_name,
+		co,
+		so2,
+		o3,
+		no2,
+		aqi,
+		quality,
+		pm10,
+		pm25,
+		o3_h8,
+		primary_pollutant,
+		ct 
+	</sql>
+
+</mapper>

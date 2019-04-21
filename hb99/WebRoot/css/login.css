@@ -1,0 +1,147 @@
+*{
+    padding: 0;
+    margin: 0
+}
+html,body{
+    height: 100%
+}
+header{
+    height: 9%;
+    display: flex;
+    align-items: center;
+    padding-left: 20%
+}
+.carouselWrap .moveBox ul li{
+	float: left;
+}
+.carouselWrap{
+	height: 100%;
+	position: relative;
+}
+.carouselWrap .moveBox{
+	overflow: hidden;
+	position: relative;
+	height: 100%;
+}
+.carouselWrap .moveBox ul{
+	position: absolute;
+	height: 100%;
+
+}
+.carouselWrap .moveBox ul li{
+	height: 100%;
+	
+}
+.moveBox ul li img{
+	height: 100%;
+	
+}
+.circle{
+	position: absolute;
+	width: 10%;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 11%;
+	display: flex;
+	justify-content: space-around;
+
+}
+.circle a{
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+    background:#DCDCDC ;
+}
+.circle .active{
+    background: #33BBFD!important                                                                   
+}
+.circle .moveCircle{
+	position: absolute;
+	border-radius: 10px;
+    left: 0;
+    /* transform: translateX(-50%); */
+    transition: 1s;
+    background: #33BBFD;
+    /* z-index:-1 */
+}
+main{
+    position: relative;
+    height: 52%
+}
+.loginWrap{
+    position: absolute;
+    right: 7%;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 1px solid #AFC1DD;
+    padding: 8px
+}
+.loginWrap form{
+    background: #fff;
+    border: 3px solid #4399D2;
+    padding: 30px 50px
+}
+.loginWrap form h3{
+    text-align: center;
+    color: #61C8F6;
+    font-size: 18px;
+    margin-bottom: 40px
+}
+.loginWrap form div{
+    display: flex;
+    align-items: center;
+    margin: 30px 0
+}
+.loginWrap form div label img{
+    width: 85%
+}
+.loginWrap form button{
+    border: none;
+    background: #0B78C3;
+    color: #fff;
+    width: 100%;
+    display: block;
+    padding: 13px 0;
+    border-radius: 4px;
+    margin-bottom: 20px
+}
+.loginWrap form div>input{
+    padding:10px 8px;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    width: 200px;
+    margin-left: 10px
+}
+.loginWrap form div>input::placeholder{
+    color: #BDBDBD
+}
+article h1{
+    padding: 20px 0;
+    letter-spacing: 3px;
+    font-size: 30px;
+    
+}
+article {
+    text-align: center;
+    line-height: 2.5
+}
+article p{
+    width: 35%;
+    margin: 0 auto;
+    
+}
+.remember input{
+    height: 15px;
+    width: 15px;
+    margin-left: 40px;
+    margin-right: 8px
+}
+.remember label{
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #CACACC
+}
+.remember label img{
+    width: 5px
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.oty.sys.dao.SysUserRoleRelDao"> 
+    
+    <resultMap type="com.oty.sys.entity.SysUserRoleRel" id="sysUserRoleRelMap">
+        <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="roleId" column="role_id"/> 
+    </resultMap> 
+    
+    <sql id="Base_Column_List" > 
+  	  	     id , 	        
+  	  	     user_id , 	        
+  	  	     role_id 
+    </sql> 
+
+	<select id="getUserRoleIds" resultType="int">
+		select role_id from sys_user_role_rel where user_id = #{userId} 
+	</select>  
+	
+	<delete id="deleteByRoleId">
+		delete from sys_user_role_rel where role_id = #{roleId}
+	</delete>
+	
+	<delete id="deleteByUserId">
+		delete from sys_user_role_rel where user_id = #{userId}
+	</delete>
+	
+	<delete id="delete2">
+		delete from sys_user_role_rel where user_id = #{userId} and role_id in (#{roleIds})
+	</delete>
+	 
+</mapper>

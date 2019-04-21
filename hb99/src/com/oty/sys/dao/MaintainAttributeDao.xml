@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oty.sys.dao.MaintainAttributeDao">
+
+	<resultMap type="com.oty.sys.entity.TMaintainAttribute" id="maintainAttributeMap">
+		<result property="id" column="id" javaType="int" jdbcType="INTEGER" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="name" column="name" />
+		<result property="remark" column="remark" />
+		<result property="normalStartVal" column="normal_start_val" />
+		<result property="normalEndVal" column="normal_end_val" />
+		<result property="type" column="type" /> 
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,
+		create_time,
+		update_time,
+		name,
+		remark,
+		normal_start_val,
+		normal_end_val,
+		type 
+	</sql>
+
+   <select id="getAll" resultType="pub.types.IdText">
+       select id as id ,name as text from t_maintain_attribute order by id asc
+   </select>
+
+</mapper>

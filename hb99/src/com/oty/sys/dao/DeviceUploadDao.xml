@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oty.sys.dao.DeviceUploadDao">
+
+	<resultMap type="com.oty.sys.entity.DeviceUpload" id="deviceUploadMap">
+		<result property="id" column="id" javaType="int" jdbcType="INTEGER" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="deviceId" column="device_id" />
+		<result property="requestId" column="request_id" />
+		<result property="deviceAttributeId" column="device_attribute_id" />
+		<result property="paramName" column="param_name" />
+		<result property="paramValue" column="param_value" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,
+		create_time,
+		update_time,
+		device_id,
+		request_id,
+		device_attribute_id,
+		param_name,
+		param_value 
+	</sql>
+
+	<select id="getLast" resultType="com.oty.sys.entity.DeviceUpload">
+		select 
+		    <include refid="Base_Column_List" /> 
+		from 
+		    t_device_upload u
+		where 
+		    u.device_id = #{deviceId} 
+		    and u.request_id = (select request_id from t_device_upload where device_id = #{deviceId} order by id desc limit 0,1)
+		 
+	</select>
+
+</mapper>

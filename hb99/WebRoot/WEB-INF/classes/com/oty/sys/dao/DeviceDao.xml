@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oty.sys.dao.DeviceDao">
+
+	<resultMap type="com.oty.sys.entity.TDevice" id="deviceMap">
+		<result property="id" column="id" javaType="int" jdbcType="INTEGER" />
+		<result property="name" column="name" />
+		<result property="code" column="code" />
+		<result property="typeId" column="type_id" />
+		<result property="property" column="property" />
+		<result property="address" column="address" />
+		<result property="cycle" column="cycle" />
+		<result property="projectId" column="project_id" />
+		<result property="moduleId" column="module_id" />
+		<result property="isCamera" column="is_camera" />
+		<result property="ip" column="ip" />
+		<result property="port" column="port" />
+		<result property="touchIp" column="touch_ip" />
+		<result property="touchPort" column="touch_port" />
+		<result property="produceTime" column="produce_time" />
+		<result property="factoryTime" column="factory_time" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="delFlag" column="del_flag" />
+		<result property="url" column="url" />
+		<result property="uuid" column="uuid" />
+		<result property="type" column="type" />
+		<result property="deviceid" column="deviceid" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,
+		name,
+		code,
+		type_id,
+		property,
+		address,
+		cycle,
+		project_id,
+		module_id,
+		is_camera,
+		ip,
+		port,
+		touch_ip,
+		touch_port,
+		produce_time,
+		factory_time,
+		create_time,
+		update_time,
+		del_flag,
+		url,
+		uuid,
+		type,
+		deviceid
+	</sql>
+
+   <select id="getAll" resultType="pub.types.IdText">
+       
+   </select>
+
+</mapper>

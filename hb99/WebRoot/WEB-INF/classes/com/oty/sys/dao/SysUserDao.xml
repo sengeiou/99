@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.oty.sys.dao.SysUserDao"> 
+    
+    <resultMap type="com.oty.sys.entity.SysUser" id="sysUserMap">
+        <result property="id" column="id" javaType="int"  jdbcType="INTEGER"/>
+        <result property="account" column="account" javaType="string" jdbcType="VARCHAR"/>
+        <result property="password" column="password" javaType="string" jdbcType="VARCHAR"/>
+        <result property="name" column="name" javaType="string" jdbcType="VARCHAR"/>
+        <result property="mobile" column="mobile" javaType="string" jdbcType="VARCHAR"/>
+        <result property="status" column="status" javaType="int"  jdbcType="INTEGER"/>
+        <result property="isManager" column="is_manager" javaType="int"  jdbcType="INTEGER"/>
+        <result property="provinceId" column="province_id" javaType="int"  jdbcType="INTEGER"/>
+        <result property="cityId" column="city_id" javaType="int"  jdbcType="INTEGER"/>
+        <result property="areaId" column="area_id" javaType="int"  jdbcType="INTEGER"/>
+        <result property="address" column="address" javaType="string" jdbcType="VARCHAR"/>
+        <result property="email" column="email" javaType="string" jdbcType="VARCHAR"/> 
+        <result property="createTime" column="create_time" javaType="java.util.Date"  jdbcType="DATE"/> 
+        <result property="updateTime" column="update_time" javaType="java.util.Date"  jdbcType="DATE"/> 
+        <result property="weixin" column="weixin"/>
+        <result property="dept" column="dept"/>
+        <result property="job" column="job"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="type" column="type"/> 
+        <result property="avatar" column="avatar"/> 
+    </resultMap>  
+    
+    <sql id="Base_Column_List" > 
+  	  	        id,
+				create_time,
+				update_time,
+				account,
+				password,
+				name,
+				mobile,
+				status,
+				is_manager,
+				province_id,
+				city_id,
+				area_id,
+				address,
+				email ,
+				weixin,
+				job, 
+				del_flag,
+				type,
+				avatar
+    </sql> 
+	
+	<select id="getByAccount" resultMap="sysUserMap">
+		select  <include refid="Base_Column_List" />  from sys_user n where status =1 and  account = #{account}
+	</select>
+		
+	<select id="isManager" resultType="int" >
+		  select is_manager from sys_user n where id = #{id}      
+	</select>	
+		
+	<select id="checkAccount" resultType="int" >
+		   select count(1) from sys_user n where account = #{account}      
+	</select>  
+
+   <select id="getAll" resultType="pub.types.IdText">
+       select id as id ,name as text from sys_user order by id asc
+   </select>
+	
+	<select id="getAllexME" resultType="pub.types.IdText">
+       select id as id ,name as text from sys_user where account != #{account} order by id asc
+   </select>
+</mapper>

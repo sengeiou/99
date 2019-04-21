@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.oty.sys.dao.SysAdDao"> 
+    
+    <resultMap type="com.oty.sys.entity.SysAd" id="sysAdMap">
+        <result property="id" column="id" javaType="int"  jdbcType="INTEGER"/>
+        <result property="title" column="title" javaType="string" jdbcType="VARCHAR"/> 
+        <result property="contents" column="contents" javaType="string" jdbcType="VARCHAR"/> 
+        <result property="createTime" column="create_time" javaType="java.util.Date"  jdbcType="DATE"/> 
+        <result property="updateTime" column="update_time" javaType="java.util.Date"  jdbcType="DATE"/> 
+        <result property="status" column="status" javaType="int"  jdbcType="INTEGER"/> 
+        <result property="deadline" column="deadline" javaType="string" jdbcType="VARCHAR"/> 
+        <result property="sysUserUd" column="sys_user_id" javaType="int"  jdbcType="INTEGER"/> 
+    </resultMap>
+    
+   <sql id="Base_Column_List" > 
+  	  	id
+		title ,
+		contents ,
+		create_time ,
+		update_time ,
+		status ,
+		deadline ,
+		sys_user_id
+
+   </sql> 
+
+</mapper>

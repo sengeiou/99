@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oty.sys.dao.VideoMonitorDao">
+
+	<resultMap type="com.oty.sys.entity.TVideoMonitor" id="videoMonitorMap">
+		<result property="id" column="id" javaType="int" jdbcType="INTEGER" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<result property="name" column="name" />
+		<result property="ip" column="ip" />
+		<result property="port" column="port" />
+		<result property="account" column="account" />
+		<result property="password" column="password" />
+		<result property="address" column="address" />
+		<result property="contacts" column="contacts" />
+		<result property="tel" column="tel" />
+		<result property="gpsX" column="gps_x" />
+		<result property="gpsY" column="gps_y" />
+		<result property="status" column="status" />
+		<result property="remark" column="remark" />
+		<result property="rtmpUrl" column="rtmp_url" />
+		<result property="hlsUrl" column="hls_url" />
+		<result property="verificationCode" column="verification_code" />
+		<result property="deviceSerial" column="device_serial" />
+		<result property="control" column="control" />
+		<result property="channelNo" column="channel_no" />
+		<result property="h5Url" column="h5_url" />
+		<result property="defenceStartTime" column="defence_start_time" />
+		<result property="defenceStopTime" column="defence_stop_time" />
+		<result property="defenceEnable" column="defence_enable" />
+		<result property="intensity" column="intensity" />
+		<result property="projectId" column="project_id" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,
+		create_time,
+		update_time,
+		name,
+		ip,
+		port,
+		account,
+		password,
+		address,
+		contacts,
+		tel,
+		gps_x,
+		gps_y,
+		status,
+		remark,
+		rtmp_url,
+		hls_url,
+		verification_code,
+		device_serial,
+		control,
+		channel_no,
+		h5_url,
+		defence_start_time,
+		defence_stop_time,
+		defence_enable,
+		intensity,
+		project_id
+	</sql>
+
+	<select id="getAll" resultType="pub.types.IdText">
+		select id as id ,name as text
+		from t_video_monitor order by id asc
+	</select>
+
+</mapper>

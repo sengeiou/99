@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop 
+     	http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+       	http://www.springframework.org/schema/mvc 
+     	http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd"
+       default-lazy-init="true">
+
+	<context:component-scan base-package="com.oty.web" use-default-filters="false" name-generator="pub.spring.BeanNameGenerator">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+		<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />
+	</context:component-scan>
+	
+   	<context:annotation-config />
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+    <mvc:annotation-driven>
+	    <mvc:async-support default-timeout="5000"/>
+	</mvc:annotation-driven>
+
+
+    <bean id="methodNameResolver" class="pub.spring.mvc.controller.MethodNameResolver">
+        <property name="defaultMethodName" value="execute"/>
+        <property name="paramNames">
+            <list>
+                <value>op</value>
+                <value>fn</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="sessionAttributeStore" class="pub.spring.mvc.controller.XDataSessionAttributeStore"/>
+    <bean id="pageDataArgumentResolver" class="pub.spring.mvc.controller.PageDataArgumentResolver"/>
+    <!--<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">-->
+    <bean class="pub.spring.mvc.controller.HandlerAdapter">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="webBindingInitializer">
+            <bean class="pub.spring.mvc.controller.WebBindingInitializer"></bean>
+        </property>
+        <property name="sessionAttributeStore" ref="sessionAttributeStore"/>
+        <property name="cacheSecondsForSessionAttributeHandlers" value="-1"/>
+        <property name="customArgumentResolvers">
+            <list>
+                <ref bean="pageDataArgumentResolver"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean class="org.springframework.web.servlet.mvc.support.ControllerBeanNameHandlerMapping">
+        <property name="urlPrefix" value="/"/>
+        <property name="order" value="1"/>
+        <property name="lazyInitHandlers" value="true"/>
+    </bean>
+
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+        <property name="order" value="2"/>
+    </bean>
+    
+    <bean id="jsonView" class="pub.spring.mvc.view.JsonView">
+        <property name="singleValueAsDirectResult" value="true"/>
+        <property name="objectMapper">
+        	<bean class="pub.spring.mvc.JsonObjectMapper">
+        		<property name="dateFormat">
+        			<bean class="java.text.SimpleDateFormat">  
+                    	<constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss" />  
+                    </bean>
+        		</property>
+        	</bean>
+        </property>
+    </bean>
+    <bean id="excelView" class="pub.spring.mvc.view.ExcelView"/>
+
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">   
+        <property name="viewResolvers">
+            <list>
+                <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+                    <property name="viewClass" value="pub.spring.mvc.view.MultiModelJstlView"/>
+                    <property name="prefix" value="/WEB-INF/view/"/>
+                    <property name="suffix" value=".jsp"/>
+                </bean>
+            </list>
+        </property>
+        <property name="defaultViews">
+            <list>
+                <ref bean="jsonView"/>
+                <ref bean="excelView"/>
+            </list>
+        </property> 
+    </bean> 
+    
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver"/>
+    <bean class="org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver"/>
+    <bean class="org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver">
+        <property name="warnLogCategory" value="framework.mvc.handler.exception"/>
+    </bean>
+    
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
+        <property name="resolveLazily" value="true"/>  
+        <property name="defaultEncoding" value="utf-8"></property>   
+    </bean>
+ 	
+	<bean
+		class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+		<property name="favorPathExtension" value="true" />
+		<property name="favorParameter" value="true" />
+		<property name="ignoreAcceptHeader" value="true"></property>
+		<property name="mediaTypes">
+			<map>
+				<entry key="html" value="text/html" />
+				<entry key="do" value="text/html" />
+				<entry key="json" value="application/json" />
+				<entry key="xls" value="application/vnd.ms-excel" />
+			</map>
+		</property>
+		<property name="defaultContentType" value="text/html" />
+	</bean>
+
+</beans>

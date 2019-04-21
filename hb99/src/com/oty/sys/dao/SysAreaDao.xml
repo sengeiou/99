@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oty.sys.dao.SysAreaDao">
+
+	<resultMap type="com.oty.sys.entity.SysArea" id="sysAreaMap">
+		<id property="parentid" column="parentid" />
+		<result property="areaname" column="areaname" javaType="string"
+			jdbcType="VARCHAR" />
+		<result property="shortname" column="shortname" javaType="string"
+			jdbcType="VARCHAR" />
+		<result property="lng" column="lng" javaType="string" jdbcType="VARCHAR" />
+		<result property="lat" column="lat" javaType="string" jdbcType="VARCHAR" />
+		<result property="level" column="level" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="position" column="position" javaType="string"
+			jdbcType="VARCHAR" />
+		<result property="sort" column="sort" javaType="int" jdbcType="INTEGER" />
+		<result property="qqLng" column="qq_lng" javaType="string"
+			jdbcType="VARCHAR" />
+		<result property="qqLat" column="qq_lat" javaType="string"
+			jdbcType="VARCHAR" />
+		<result property="fullName" column="full_name" javaType="string"
+			jdbcType="VARCHAR" />
+		<result property="areaCode" column="area_code" javaType="string"
+			jdbcType="VARCHAR" />
+		<collection property="parents" ofType="com.oty.sys.entity.SysArea"
+			column="parentid" select="findMenuByparentId" />
+	</resultMap>
+
+	<select id="findMenuByparentId" resultMap="sysAreaMap"
+		parameterType="INTEGER">
+		SELECT * FROM sys_area WHERE id = #{parentid}
+	</select>
+
+	<select id="findParents" resultMap="sysAreaMap">
+		select * from sys_area WHERE id= #{parentId}
+	</select> 
+
+	<sql id="Base_Column_List">
+		id ,
+		areaname ,
+		parentid ,
+		lng ,
+		lat ,
+		level ,
+		position ,
+		sort ,
+		qq_lng ,
+		qq_lat ,
+		full_name,
+		area_code,
+		is_pm
+	</sql>
+
+	<select id="listSubAreas" resultType="pub.types.IdText">
+		select id as id ,areaname as text from sys_area where parentid = #{parentId}
+		order by id asc
+	</select>
+
+	<select id="getParent" resultType="com.oty.sys.entity.SysArea">
+		select
+		<include refid="Base_Column_List" />
+		from sys_area where parentid = #{parentId} order by id asc
+	</select>
+
+	<select id="getById" resultType="com.oty.sys.entity.SysArea">
+		select
+		<include refid="Base_Column_List" />
+		from sys_area where id = #{id} order by id asc
+	</select>
+
+	<select id="getRoots" resultType="pub.types.IdText">
+		select id as id ,areaname as text from sys_area where parentid = 0 order by
+		id asc
+	</select>
+
+	<select id="queryList" resultType="com.oty.sys.entity.SysArea">
+		select
+		<include refid="Base_Column_List" />
+		from sys_area where qq_lng is null order by id asc
+	</select>
+
+	<select id="findByLevel" resultType="com.oty.sys.entity.SysArea">
+		select
+		<include refid="Base_Column_List" />
+		from sys_area where level = #{level} and is_pm = 1 order by id asc
+	</select>
+
+</mapper>
